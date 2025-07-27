@@ -1989,7 +1989,6 @@
             e.stopPropagation();
         });
 
-        // Animate stats counter
         function animateStats() {
             const counters = document.querySelectorAll('.number');
             const speed = 200;
@@ -2045,7 +2044,6 @@
             });
         });
 
-        // Improved theme loading
         function applySavedTheme() {
             const savedTheme = localStorage.getItem('cyclic-theme') || 'default';
             document.body.className = savedTheme;
@@ -2055,12 +2053,10 @@
                 activeOption.classList.add('active');
             }
 
-            // Apply CSS variables immediately
             document.documentElement.style.setProperty('--primary-color',
                 getComputedStyle(document.body).getPropertyValue('--primary-color'));
         }
 
-        // Initialize with DOMContentLoaded
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', applySavedTheme);
         } else {
