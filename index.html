@@ -388,7 +388,9 @@
         .scroll-down-bounce {
             animation: bounce 2s infinite;
             cursor: pointer;
-            display: inline-block;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         .carousel {
@@ -1572,7 +1574,8 @@
         </div>
         <div class="arrows">
             <button id="prev"><</button>
-                    <button id="next">></button><button id="back">See All &#8599</button>
+             <button id="next">></button>
+             <button id="back">See All &#8599</button>
         </div>
     </div>
 
