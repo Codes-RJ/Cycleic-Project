@@ -14,7 +14,7 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: cursive;
         }
 
         :root {
@@ -38,19 +38,6 @@
             --item5-filter: blur(40px);
             --item5-zIndex: 7;
             --item5-opacity: 0;
-            --header-text: white;
-            --footer-bg: rgba(0, 0, 0, 0.7);
-            --carousel-bg: transparent;
-            --button-text: white;
-            --border-color: #555;
-            --icon-color: white;
-            --primary-color: #00d9ff;
-            --text-color: #333;
-            --bg-gradient: linear-gradient(135deg, #0091ff 0%, #f604f66d 50%, #32025575 100%);
-            --header-bg: rgba(0, 0, 0, 0.304);
-            --carousel-text: #373636;
-            --button-bg: rgba(0, 217, 255, 0.8);
-            --button-hover: rgba(0, 217, 255, 1);
         }
 
         body {
@@ -63,10 +50,11 @@
             cursor: default;
         }
 
+        /* Theme of the program */
         body.default {
-            background: linear-gradient(135deg, #0091ff 0%, #f604f66d 50%, #32025575 100%);
+            background: linear-gradient(135deg, #ffffff 0%, #8aeaf7 50%, #00d0ff 100%);
             color: #333;
-            --primary-color: #00d9ff;
+            --primary-color: #000000;
             --text-color: #333;
             --bg-gradient: linear-gradient(135deg, #0091ff 0%, #f604f66d 50%, #32025575 100%);
             --header-bg: rgba(0, 0, 0, 0.304);
@@ -76,15 +64,18 @@
             --header-text: white;
             --footer-bg: rgba(0, 0, 0, 0.7);
             --carousel-bg: transparent;
-            --button-text: white;
+            --button-text: rgb(0, 0, 0);
             --border-color: #555;
             --icon-color: white;
+            --detail: rgba(0, 0, 0, 0.308);
+            --hovering: white;
+            --underline: rgba(0, 217, 255, 1);
         }
 
         body.dark {
-            background: linear-gradient(135deg, #003366 0%, #330033 50%, #000033 100%);
+            background: linear-gradient(135deg, #000000 0%, #600060 50%, #000058 100%);
             color: #fff;
-            --primary-color: #00d9ff;
+            --primary-color: #ffffff;
             --text-color: #fff;
             --bg-gradient: linear-gradient(135deg, #003366 0%, #330033 50%, #000033 100%);
             --header-bg: rgba(0, 0, 0, 0.7);
@@ -93,10 +84,13 @@
             --button-hover: rgba(0, 217, 255, 0.9);
             --header-text: white;
             --footer-bg: rgba(0, 0, 0, 0.8);
-            --carousel-bg: rgba(0, 0, 0, 0.2);
+            --carousel-bg: transparent;
             --button-text: white;
             --border-color: #777;
-            --icon-color: #00d9ff;
+            --icon-color: white;
+            --detail: rgba(255, 255, 255, 0.374);
+            --hovering:black;
+            --underline: rgba(0, 217, 255, 1);
         }
 
         body.dark header {
@@ -112,41 +106,7 @@
             border-color: #00d9ff;
         }
 
-        body.neon {
-            background: linear-gradient(135deg, #00ff88 0%, #ff00f7 50%, #ff6600 100%);
-            color: #000;
-            animation: gradient-shift 5s ease infinite;
-            --primary-color: #00ff88;
-            --text-color: #000;
-            --bg-gradient: linear-gradient(135deg, #00ff88 0%, #ff00f7 50%, #ff6600 100%);
-            --header-bg: rgba(0, 0, 0, 0.5);
-            --carousel-text: #111;
-            --button-bg: rgba(255, 255, 255, 0.8);
-            --button-hover: rgba(255, 255, 255, 1);
-            --header-text: black;
-            --footer-bg: rgba(255, 255, 255, 0.1);
-            --carousel-bg: rgba(255, 255, 255, 0.05);
-            --button-text: black;
-            --border-color: #00ff88;
-            --icon-color: #ff00f7;
-        }
-
-        body.neon header {
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-
-        body.neon .Brand {
-            text-shadow: 0 0 10px var(--primary-color);
-        }
-
-        body.neon .navigation-bar:hover::after {
-            background: var(--primary-color);
-        }
-
-        body.neon .gear:hover {
-            color: var(--primary-color);
-        }
-
+        /* Header */
         header {
             display: flex;
             justify-content: space-between;
@@ -174,6 +134,7 @@
             background-color: rgba(0, 0, 0, 0.304);
         }
 
+        /* Logo */
         .Brand {
             color: rgb(0, 217, 255);
             font-size: 2.2rem;
@@ -183,6 +144,7 @@
             transition: all 0.3s ease;
         }
 
+        /* Navigation Bar */
         .navigation {
             display: flex;
             gap: 3rem;
@@ -203,7 +165,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--primary-color);
+            background: var(--underline);
             transition: width 0.3s ease;
         }
 
@@ -220,6 +182,7 @@
             width: 100%;
         }
 
+        /* Introduction */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -258,7 +221,6 @@
             font-size: 1.5rem;
             letter-spacing: 5px;
             margin-top: -10px;
-            color: rgba(255, 255, 255, 0.8);
         }
 
         .tagline-container {
@@ -390,8 +352,11 @@
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
+            margin-top: 2rem;
+            color: var(--primary-color);
         }
 
+        /* Animated Cycle Display */
         .carousel {
             position: relative;
             height: 525px;
@@ -490,12 +455,13 @@
 
         .carousel .list .item .introduce .seeMore:hover {
             background-color: #ffefef34;
-            border-color: #000000;
+            box-shadow: 2px 2px 2px var(--detail);
             padding: 10px;
             background-origin: padding-box;
             transition: all 0.2s;
-            background-color: var(--primary-color);
-            color: var(--button-hover-text, white);
+            background-color: #00aaff;
+            text-shadow: 1px 1px 1px var(--primary-color);
+            color: var(--hovering, white);
         }
 
         .seeMore:hover {
@@ -745,9 +711,12 @@
 
         #back:hover,
         #back:active {
-            background-color: #ffffff56 !important;
+            background-color:#00aaff !important;
             cursor: pointer !important;
             border-radius: 15px;
+            box-shadow: 2px 2px 2px var(--detail);
+            text-shadow: 1px 1px 1px var(--primary-color);
+            color: var(--hovering, white);
             margin-bottom: 10px;
             padding: 15px;
             background-origin: padding-box;
@@ -768,6 +737,7 @@
             filter: blur(130px);
         }
 
+        /* Footer */
         footer {
             background-color: var(--footer-bg);
             color: white;
@@ -891,6 +861,7 @@
             font-size: 0.9rem;
         }
 
+        /* Setting Button */
         .gear {
             color: var(--icon-color);
             cursor: pointer;
@@ -1226,9 +1197,6 @@
                     <a href="#" class="theme-option" data-theme="dark">
                         <i class="fas fa-moon"></i> Dark Mode
                     </a>
-                    <a href="#" class="theme-option" data-theme="neon">
-                        <i class="fas fa-bicycle"></i> Neon Cycling
-                    </a>
                 </div>
             </div>
         </div>
@@ -1271,7 +1239,7 @@
                     Explore Collection <i class="fas fa-chevron-right"></i>
                 </button>
             </div>
-            <div class="scroll-down-bounce" style="margin-top: 2rem; color: white;">Scroll Down</div>
+            <div class="scroll-down-bounce">Scroll Down</div>
         </div>
     </section>
 
@@ -1327,7 +1295,7 @@
             </div>
 
             <div class="item">
-                <img src="Adobe Express - file (1).png" style="filter: drop-shadow(8px 8px 10px rgb(58, 153, 255));">
+                <img src="Adobe Express - file (1).png" style="filter: drop-shadow(8px 8px 10px rgb(58, 120, 255));">
                 <div class="introduce">
                     <div class="title">MOUNTAIN MASTER</div>
                     <div class="topic">Firefox Mountrail</div>
@@ -1375,7 +1343,7 @@
             </div>
 
             <div class="item">
-                <img src="Adobe Express - file (2).png" style="filter: drop-shadow(8px 8px 10px rgb(105, 105, 105));">
+                <img src="Adobe Express - file (2).png" style="filter: drop-shadow(8px 8px 10px rgb(0, 0, 0));">
                 <div class="introduce">
                     <div class="title">URBAN COMMUTER</div>
                     <div class="topic">Waltx Urban-1</div>
