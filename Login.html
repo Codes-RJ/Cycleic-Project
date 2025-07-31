@@ -14,22 +14,9 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: cursive;
         }
 
-        :root {
-            --header-text: white;
-            --footer-bg: rgba(0, 0, 0, 0.7);
-            --button-text: white;
-            --border-color: #555;
-            --icon-color: white;
-            --primary-color: #00d9ff;
-            --text-color: #333;
-            --bg-gradient: linear-gradient(135deg, #0091ff 0%, #f604f66d 50%, #32025575 100%);
-            --header-bg: rgba(0, 0, 0, 0.304);
-            --button-bg: rgba(0, 217, 255, 0.8);
-            --button-hover: rgba(0, 217, 255, 1);
-        }
 
         body {
             min-height: 100vh;
@@ -42,7 +29,8 @@
         }
 
         body.default {
-            background: linear-gradient(135deg, #0091ff 0%, #f604f66d 50%, #32025575 100%);
+            text-shadow: 1px 1px rgba(0, 0, 0, 0.534);
+            background: linear-gradient(135deg, #0091ff89 0%, #0420f64a 50%, #32025542 100%);
             color: #333;
             --primary-color: #00d9ff;
             --text-color: #333;
@@ -58,11 +46,11 @@
         }
 
         body.dark {
-            background: linear-gradient(135deg, #003366 0%, #330033 50%, #000033 100%);
+            background: linear-gradient(135deg, #000000bd 0%, #090228 50%, #010135 100%);
             color: #fff;
             --primary-color: #00d9ff;
             --text-color: #fff;
-            --bg-gradient: linear-gradient(135deg, #003366 0%, #330033 50%, #000033 100%);
+            --bg-gradient: linear-gradient(135deg, #000000bd 0%, #090228 50%, #020242 100%);
             --header-bg: rgba(0, 0, 0, 0.7);
             --button-bg: rgba(0, 217, 255, 0.6);
             --button-hover: rgba(0, 217, 255, 0.9);
@@ -70,44 +58,11 @@
             --footer-bg: rgba(0, 0, 0, 0.8);
             --button-text: white;
             --border-color: #777;
-            --icon-color: #00d9ff;
+            --icon-color: #ffffff;
         }
 
         body.dark header {
             background-color: rgba(0, 0, 0, 0.7);
-        }
-
-        body.neon {
-            background: linear-gradient(135deg, #00ff88 0%, #ff00f7 50%, #ff6600 100%);
-            color: #000;
-            animation: gradient-shift 5s ease infinite;
-            --primary-color: #00ff88;
-            --text-color: #000;
-            --bg-gradient: linear-gradient(135deg, #00ff88 0%, #ff00f7 50%, #ff6600 100%);
-            --header-bg: rgba(0, 0, 0, 0.5);
-            --button-bg: rgba(255, 255, 255, 0.8);
-            --button-hover: rgba(255, 255, 255, 1);
-            --header-text: black;
-            --footer-bg: rgba(255, 255, 255, 0.1);
-            --button-text: black;
-            --border-color: #00ff88;
-            --icon-color: #ff00f7;
-        }
-
-        body.neon header {
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-
-        body.neon .Brand {
-            text-shadow: 0 0 10px var(--primary-color);
-        }
-
-        body.neon .navigation-bar:hover::after {
-            background: var(--primary-color);
-        }
-
-        body.neon .gear:hover {
-            color: var(--primary-color);
         }
 
         header {
@@ -568,6 +523,7 @@
             width: 300px;
             height: 200px;
             object-fit: cover;
+            animation: fadeInUp 1s ease-out forwards;
         }
 
         /* Responsive Styles */
@@ -798,9 +754,6 @@
                     </a>
                     <a href="#" class="theme-option" data-theme="dark">
                         <i class="fas fa-moon"></i> Dark Mode
-                    </a>
-                    <a href="#" class="theme-option" data-theme="neon">
-                        <i class="fas fa-bicycle"></i> Neon Cycling
                     </a>
                 </div>
             </div>
