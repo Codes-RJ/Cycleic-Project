@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="RJ" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <title>Cycleic - Premium Cycles</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: cursive;
+        }
+
+
+        body {
+            min-height: 100vh;
+            background: var(--bg-gradient);
+            background-size: 400% 400%;
+            color: var(--text-color);
+            animation: gradient-shift 5s ease infinite;
+            padding-top: 80px;
+            cursor: default;
+        }
+
+        body.default {
+            text-shadow: 1px 1px rgba(0, 0, 0, 0.534);
+            background: linear-gradient(135deg, #0091ff89 0%, #0420f64a 50%, #32025542 100%);
+            color: #333;
+            --primary-color: #00d9ff;
+            --text-color: #333;
+            --bg-gradient: linear-gradient(135deg, #0091ff 0%, #f604f66d 50%, #32025575 100%);
+            --header-bg: rgba(0, 0, 0, 0.304);
+            --button-bg: rgba(0, 217, 255, 0.8);
+            --button-hover: rgba(0, 217, 255, 1);
+            --header-text: white;
+            --footer-bg: rgba(0, 0, 0, 0.7);
+            --button-text: white;
+            --border-color: #555;
+            --icon-color: white;
+        }
+
+        body.dark {
+            background: linear-gradient(135deg, #000000bd 0%, #090228 50%, #010135 100%);
+            color: #fff;
+            --primary-color: #00d9ff;
+            --text-color: #fff;
+            --bg-gradient: linear-gradient(135deg, #000000bd 0%, #090228 50%, #020242 100%);
+            --header-bg: rgba(0, 0, 0, 0.7);
+            --button-bg: rgba(0, 217, 255, 0.6);
+            --button-hover: rgba(0, 217, 255, 0.9);
+            --header-text: white;
+            --footer-bg: rgba(0, 0, 0, 0.8);
+            --button-text: white;
+            --border-color: #777;
+            --icon-color: #ffffff;
+        }
+
+        body.dark header {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background-color: var(--header-bg);
+            font-size: medium;
+            color: var(--header-text);
+            position: fixed;
+            box-shadow: 0 8px 16px rgba(255, 255, 255, 0.475);
+            top: 5px;
+            border-radius: 10px;
+            width: 98%;
+            left: 1%;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            top: 0;
+            width: 100%;
+            left: 0;
+            border-radius: 0;
+            background-color: rgba(0, 0, 0, 0.304);
+        }
+
+        .Brand {
+            color: rgb(0, 217, 255);
+            font-size: 2.2rem;
+            cursor: default;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .navigation {
+            display: flex;
+            gap: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .navigation-bar {
+            cursor: pointer;
+            position: relative;
+            padding: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        .navigation-bar::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .Brand:hover,
+        .navigation-bar:hover {
+            transform: translateY(-2px);
+        }
+
+        .Brand:hover {
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.504);
+        }
+
+        .navigation-bar:hover::after {
+            width: 100%;
+        }
+
+        footer {
+            background-color: var(--footer-bg);
+            color: white;
+            padding: 40px 0 0;
+            margin-top: 50px;
+            backdrop-filter: blur(10px);
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .footer-brand {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-brand .Brand {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: rgb(0, 217, 255);
+            text-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
+        }
+
+        .footer-brand p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            color: var(--icon-color);
+            background: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background: rgba(0, 217, 255, 0.8);
+            transform: translateY(-3px);
+        }
+
+        .footer-links {
+            flex: 2;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .footer-column {
+            min-width: 150px;
+        }
+
+        .footer-column h3 {
+            display: inline-block;
+            position: relative;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 2px;
+            background: rgb(0, 217, 255);
+        }
+
+        .footer-column h3:hover {
+            cursor: default;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: rgb(0, 217, 255);
+            padding-left: 5px;
+        }
+
+        .footer-column ul li i {
+            margin-right: 10px;
+            color: rgb(0, 217, 255);
+            width: 20px;
+            text-align: center;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+            border-top: 1px solid var(--border-color);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        .gear {
+            color: var(--icon-color);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gear:hover {
+            transform: scale(1.1) rotate(90deg);
+        }
+
+        .settings-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .settings-dropdown {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background-color: rgba(48, 47, 47, 0.293);
+            min-width: 180px;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(255, 255, 255, 0.475);
+            z-index: 1001;
+            backdrop-filter: blur(10px);
+            padding: 10px 0;
+            margin-top: 21px;
+        }
+
+        .settings-dropdown a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s;
+        }
+
+        .settings-dropdown a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .settings-container:hover .settings-dropdown {
+            display: block;
+        }
+
+        .settings-dropdown.active {
+            display: block;
+        }
+
+        .theme-option i {
+            width: 20px;
+            margin-right: 10px;
+            text-align: center;
+        }
+
+        .theme-option.active {
+            background: rgba(0, 217, 255, 0.2);
+            border-left: 3px solid rgb(0, 217, 255);
+        }
+
+        .theme-option.active i {
+            color: rgb(0, 217, 255);
+        }
+
+        .form {
+            background: rgba(255, 255, 255, 0.141);
+            padding: 40px;
+            max-width: 600px;
+            margin: 40px auto;
+            border-radius: 25px;
+            box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+        }
+
+        .tab-group {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 40px 0;
+        }
+
+        .tab-group:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .tab-group li a {
+            display: block;
+            text-decoration: none;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.159);
+            color: white;
+            font-size: 20px;
+            font-weight: 600;
+            text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.175);
+            float: left;
+            width: 50%;
+            text-align: center;
+            cursor: pointer;
+            transition: .5s ease;
+        }
+
+        .tab-group li a:hover {
+            color: white;
+            box-shadow: 5px 5px #00000024;
+            text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.475);
+            transform: scale(1.01);
+        }
+
+        .tab-group .active a {
+            background: #0000004d;
+            color: white;
+        }
+
+        .tab-content>div:last-child {
+            display: none;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            font-weight: 600;
+            margin: 0 0 40px;
+        }
+
+        label {
+            position: absolute;
+            transform: translateY(6px);
+            left: 13px;
+            color: white;
+            transition: all 0.1 ease;
+            -webkit-backface-visibility: hidden;
+            pointer-events: none;
+            font-size: 22px;
+        }
+
+        label .req {
+            margin: 2px;
+            color: #ffffff;
+        }
+
+        label.active {
+            transform: translateY(50px);
+            left: 2px;
+            font-size: 14px;
+        }
+
+        label.active .req {
+            opacity: 0;
+        }
+
+        label.highlight {
+            color: white;
+        }
+
+        input,
+        textarea {
+            font-size: 22px;
+            display: block;
+            width: 100%;
+            height: 100%;
+            padding: 5px 10px;
+            background: none;
+            background-image: none;
+            border: 1px solid #000000;
+            color: white;
+            border-radius: 0;
+            transition: border-color .25s ease, box-shadow .25s ease;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: 0;
+            border-color: black;
+        }
+
+        textarea {
+            border: 2px solid #a0b3b0;
+            resize: vertical;
+        }
+
+        .field-wrap {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .top-row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .top-row>div {
+            float: left;
+            width: 48%;
+            margin-right: 4%;
+        }
+
+        .top-row>div:last-child {
+            margin: 0;
+        }
+
+        .button {
+            border: 0;
+            outline: none;
+            border-radius: 10px;
+            padding: 15px 0;
+            font-size: 2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            background: #0091ff;
+            color: white;
+            cursor: pointer;
+            transition: all .5s ease;
+            -webkit-appearance: none;
+        }
+
+        .button:hover,
+        .button:focus {
+            background: #0062ff;
+        }
+
+        .button-block {
+            display: block;
+            width: 100%;
+        }
+
+        .forgot {
+            margin-top: -20px;
+            text-align: right;
+        }
+
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus,
+        input:-webkit-autofill:active {
+            -webkit-box-shadow: none inset !important;
+            -webkit-text-fill-color: white !important;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+
+        .about-section {
+            margin: 6rem;
+            color: white;
+            font-size: large;
+        }
+
+        .about-us {
+            display: flex;
+            justify-content: space-between;
+            gap: 6rem;
+            margin-bottom: 3rem;
+            align-items: center;
+        }
+
+        .Imagery {
+            border-radius: 15px;
+            filter: drop-shadow(2px 2px 2px rgba(251, 255, 2, 0.54));
+            width: 300px;
+            height: 200px;
+            object-fit: cover;
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .about-section {
+                margin: 4rem;
+            }
+            
+            .about-us {
+                gap: 4rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .about-section {
+                margin: 3rem;
+            }
+            
+            .about-us {
+                gap: 3rem;
+            }
+            
+            .Imagery {
+                width: 250px;
+                height: 170px;
+            }
+            
+            .navigation {
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navigation {
+                gap: 1.5rem;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .about-section {
+                margin: 2rem;
+            }
+            
+            .about-us {
+                flex-direction: column;
+                gap: 2rem;
+                text-align: center;
+            }
+            
+            .about-us img {
+                order: -1;
+            }
+            
+            .about-us:nth-child(even) img {
+                order: -1;
+            }
+            
+            .form {
+                padding: 30px;
+                margin: 30px auto;
+            }
+            
+            .Brand {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            header {
+                flex-direction: column;
+                padding: 10px;
+                gap: 10px;
+                text-align: center;
+            }
+
+            .navigation {
+                gap: 1rem;
+                font-size: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .navigation-bar {
+                padding: 5px 10px;
+            }
+
+            .form {
+                padding: 20px;
+                margin: 20px auto;
+                width: 95%;
+            }
+
+            .tab-group li a {
+                font-size: 16px;
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+
+            input,
+            textarea {
+                font-size: 18px;
+            }
+
+            .button {
+                font-size: 1.5rem;
+                padding: 12px 0;
+            }
+            
+            .about-section {
+                margin: 1.5rem;
+                font-size: medium;
+            }
+            
+            .Imagery {
+                width: 100%;
+                height: auto;
+                max-height: 200px;
+            }
+            
+            .top-row>div {
+                float: none;
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 25px;
+            }
+
+            .field-wrap {
+                margin-bottom: 25px;
+            }
+
+            .top-row {
+                margin-bottom: 25px;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .Brand {
+                font-size: 1.5rem;
+            }
+            
+            .navigation {
+                gap: 0.8rem;
+                font-size: 0.9rem;
+            }
+            
+            .about-section {
+                margin: 1rem;
+                font-size: small;
+            }
+            
+            .form {
+                padding: 15px;
+            }
+            
+            .tab-group li a {
+                font-size: 14px;
+                padding: 8px;
+            }
+        }
+
+        @keyframes gradient-shift {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header id="mainHeader">
+        <div class="Brand">
+            CYCLEIC
+        </div>
+        <div class="navigation">
+            <div class="navigation-bar">
+                <a href="Hero1.html" style="text-decoration: none; color:white; ">Home</a>
+            </div>
+            <div class="settings-container">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" viewBox="0 0 16 16"
+                    class="gear" id="settingsGear">
+                    <path
+                        d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0" />
+                    <path
+                        d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115z" />
+                </svg>
+                <div class="settings-dropdown" id="settingsDropdown">
+                    <a href="#" class="theme-option active" data-theme="default">
+                        <i class="fas fa-sun"></i> Light Mode
+                    </a>
+                    <a href="#" class="theme-option" data-theme="dark">
+                        <i class="fas fa-moon"></i> Dark Mode
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="form">
+        <ul class="tab-group">
+            <li class="tab active"><a href="#signup">Sign Up</a></li>
+            <li class="tab"><a href="#login">Log In</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="signup">
+                <h1>Sign Up for Free</h1>
+
+                <form action="/" method="post">
+                    <div class="top-row">
+                        <div class="field-wrap">
+                            <label>
+                                First Name<span class="req">*</span>
+                            </label>
+                            <input type="text" required autocomplete="off" />
+                        </div>
+
+                        <div class="field-wrap">
+                            <label>
+                                Last Name<span class="req">*</span>
+                            </label>
+                            <input type="text" required autocomplete="off" />
+                        </div>
+                    </div>
+
+                    <div class="field-wrap">
+                        <label>
+                            Email Address<span class="req">*</span>
+                        </label>
+                        <input type="email" required autocomplete="off" />
+                    </div>
+
+                    <div class="field-wrap">
+                        <label>
+                            Set A Password<span class="req">*</span>
+                        </label>
+                        <input type="password" required autocomplete="off" />
+                    </div>
+
+                    <button type="submit" class="button button-block"><a href="Hero2.html" style="text-decoration: none; color: white;">Get Started</a></button>
+                </form>
+            </div>
+
+            <div id="login">
+                <h1>Welcome Back!</h1>
+
+                <form action="/" method="post">
+                    <div class="field-wrap">
+                        <label>
+                            Email Address<span class="req">*</span>
+                        </label>
+                        <input type="email" required autocomplete="off" />
+                    </div>
+
+                    <div class="field-wrap">
+                        <label>
+                            Password<span class="req">*</span>
+                        </label>
+                        <input type="password" required autocomplete="off" />
+                    </div>
+
+                    <p class="forgot"><a href="#">Forgot Password?</a></p>
+
+                    <button class="button button-block"><a href="Hero2.html" style="text-decoration: none; color: white;">Log In</a></button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <section id="about" class="about-section">
+        <h2>About Us</h2>
+        <div class="about-us">
+            <p>
+                Welcome to <strong>Cycleic</strong> — a platform built for the cycling community, by the cycling community.
+                We are a Mumbai-based startup that began with a simple mission: to make it easier, safer, and more
+                convenient to buy and sell pre-owned bicycles and cycling accessories online.
+            </p>
+            <img src="Image 1.png" class="Imagery" alt="Photo">
+        </div>
+
+        <div class="about-us">
+            <img src="Image 2.png" class="Imagery" alt="Photo">
+            <p>
+                Our journey started in 2019 when we were searching for a good-quality second-hand bike and realized how
+                unorganized and scattered the existing options were. From unreliable listings on social media to poor
+                product descriptions and a lack of trust, the experience was far from smooth. That frustration sparked an
+                idea — why not build a dedicated online marketplace for cycles, just like cars and motorbikes have?
+            </p>
+        </div>
+
+        <div class="about-us">
+            <p>
+                In 2020, <strong>Cycleic</strong> was born. Since then, we've been committed to creating a trusted ecosystem
+                where buyers and sellers from across India can connect, communicate, and complete deals with confidence.
+                Whether you're looking to sell your first kid's bicycle or upgrade to a high-performance mountain bike,
+                we're here to simplify the process.
+            </p>
+        </div>
+
+        <div class="about-us">
+            <p>
+                At Cycleic, we believe cycling is more than just a mode of transport — it's a lifestyle, a fitness journey,
+                and a path to sustainability. That's why we focus not just on selling bikes, but on building a culture
+                around cycling. We aim to promote eco-friendly transportation, healthier living, and a stronger community of
+                riders.
+            </p>
+            <img src="Image 3.png" class="Imagery" alt="Photo">
+        </div>
+
+        <div class="about-us">
+            <img src="Image 4.png" class="Imagery" alt="Photo">
+            <p>
+                Our platform is user-friendly, mobile-optimized, and designed with trust and transparency in mind. Every
+                product listing goes through a basic verification process before it goes live, and we provide helpful tools
+                to guide buyers and sellers every step of the way.
+            </p>
+        </div>
+
+        <div class="about-us">
+            <p>
+                From tricycles and city commuters to road racers and MTB beasts — we support all types of bicycles. We also
+                help sellers reach a wider audience by overcoming geographical limits that might otherwise prevent a sale.
+            </p>
+    
+            <p>
+                Looking ahead, we plan to introduce features like doorstep delivery, secure payment options, and more
+                community-driven features such as rider reviews, cycling blogs, and local ride events. We're not just
+                building a marketplace — we're building a movement.
+            </p>
+    
+            <p>
+                Thank you for being a part of the Cycleic family. Whether you're a seasoned rider or just getting started,
+                we're excited to be part of your journey on two wheels. Together, let's ride toward a cleaner, healthier,
+                and more connected future.
+            </p>
+        </div>
+    </section>
+
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="Brand">CYCLEIC</div>
+                <p style="cursor: default">Ride the future with our premium collection of high-performance cycles
+                    designed for every terrain and every rider.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#" onclick="scrollToSection('home')">Home</a></li>
+                        <li><a href="Explore.html">Catalog</a></li>
+                        <li><a href="Contact.html">Contact Us</a></li>
+                        <li><a href="Login.html">Login/Sign-Up</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">Return Policy</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li style="cursor: default"><i class="fas fa-map-marker-alt"></i> XYZ, Delhi</li>
+                        <li style="cursor: default"><i class="fas fa-phone"></i> +1 234 567 890</li>
+                        <li style="cursor: default"><i class="fas fa-envelope"></i> info@cycleic.com</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Cycleic. All Rights Reserved. Designed by Rohan Jaiswal</p>
+        </div>
+    </footer>
+
+    <script>
+        const header = document.getElementById('mainHeader');
+        const settingsGear = document.getElementById('settingsGear');
+        const settingsDropdown = document.getElementById('settingsDropdown');
+        const themeOptions = document.querySelectorAll('.theme-option');
+
+        window.addEventListener('scroll', function () {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        function handleThemeChange(e) {
+            e.preventDefault();
+
+            themeOptions.forEach(opt => opt.classList.remove('active'));
+            this.classList.add('active');
+
+            const theme = this.dataset.theme;
+            document.body.className = theme;
+
+            document.querySelectorAll('header, footer').forEach(el => {
+                el.style.display = 'none';
+                el.offsetHeight;
+                el.style.display = '';
+            });
+
+            localStorage.setItem('cyclic-theme', theme);
+        }
+
+        function applySavedTheme() {
+            const savedTheme = localStorage.getItem('cyclic-theme') || 'default';
+            document.body.className = savedTheme;
+
+            const activeOption = document.querySelector(`.theme-option[data-theme="${savedTheme}"]`);
+            if (activeOption) {
+                activeOption.classList.add('active');
+            }
+
+            document.documentElement.style.setProperty('--primary-color',
+                getComputedStyle(document.body).getPropertyValue('--primary-color'));
+        }
+
+        settingsGear.addEventListener('click', function (e) {
+            e.stopPropagation();
+            settingsDropdown.classList.toggle('active');
+        });
+
+        document.addEventListener('click', () => settingsDropdown.classList.remove('active'));
+        settingsDropdown.addEventListener('click', e => e.stopPropagation());
+
+        document.querySelectorAll('.form input, .form textarea').forEach(input => {
+            input.addEventListener('keyup', function (e) {
+                const label = this.previousElementSibling;
+                if (this.value === '') {
+                    label.classList.remove('active', 'highlight');
+                } else {
+                    label.classList.add('active', 'highlight');
+                }
+            });
+
+            input.addEventListener('blur', function (e) {
+                const label = this.previousElementSibling;
+                if (this.value === '') {
+                    label.classList.remove('active', 'highlight');
+                } else {
+                    label.classList.remove('highlight');
+                }
+            });
+
+            input.addEventListener('focus', function (e) {
+                const label = this.previousElementSibling;
+                if (this.value === '') {
+                    label.classList.remove('highlight');
+                } else {
+                    label.classList.add('highlight');
+                }
+            });
+        });
+
+        document.querySelectorAll('.tab a').forEach(tab => {
+            tab.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                this.parentElement.classList.add('active');
+                Array.from(this.parentElement.parentElement.children).forEach(sibling => {
+                    if (sibling !== this.parentElement) {
+                        sibling.classList.remove('active');
+                    }
+                });
+
+                const target = this.getAttribute('href');
+                document.querySelectorAll('.tab-content > div').forEach(content => {
+                    if (content.id !== target.substring(1)) {
+                        content.style.display = 'none';
+                    }
+                });
+                document.querySelector(target).style.display = 'block';
+            });
+        });
+
+        function initializePage() {
+            applySavedTheme();
+
+            themeOptions.forEach(option => {
+                option.addEventListener('click', handleThemeChange);
+            });
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializePage);
+        } else {
+            initializePage();
+        }
+    </script>
+</body>
+
+</html>
