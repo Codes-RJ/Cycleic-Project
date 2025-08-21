@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="RJ" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <title>Cycleic - Premium Cycles</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: cursive;
+        }
+
+        body {
+            min-height: 100vh;
+            background: var(--bg-gradient);
+            background-size: 400% 400%;
+            color: var(--text-color);
+            animation: gradient-shift 5s ease infinite;
+            padding-top: 80px;
+            cursor: default;
+        }
+
+        /* Theme of the program */
+        body.default {
+            background: linear-gradient(135deg, #ffffff 0%, #8aeaf7 50%, #00d0ff 100%);
+            color: #333;
+            --primary-color: #000000;
+            --text-color: #333;
+            --bg-gradient: linear-gradient(135deg, #0091ff 0%, #f604f66d 50%, #32025575 100%);
+            --header-bg: rgba(0, 0, 0, 0.304);
+            --carousel-text: #373636;
+            --button-bg: rgba(0, 217, 255, 0.8);
+            --button-hover: rgba(0, 217, 255, 1);
+            --header-text: white;
+            --footer-bg: rgba(0, 0, 0, 0.7);
+            --carousel-bg: transparent;
+            --button-text: rgb(0, 0, 0);
+            --border-color: #555;
+            --icon-color: white;
+            --detail: rgba(0, 0, 0, 0.308);
+            --hovering: white;
+            --underline: rgba(0, 217, 255, 1);
+        }
+
+        body.dark {
+            background: linear-gradient(135deg, #000000 0%, #600060 50%, #000058 100%);
+            color: #fff;
+            --primary-color: #ffffff;
+            --text-color: #fff;
+            --bg-gradient: linear-gradient(135deg, #003366 0%, #330033 50%, #000033 100%);
+            --header-bg: rgba(0, 0, 0, 0.7);
+            --carousel-text: #eee;
+            --button-bg: rgba(0, 217, 255, 0.6);
+            --button-hover: rgba(0, 217, 255, 0.9);
+            --header-text: white;
+            --footer-bg: rgba(0, 0, 0, 0.8);
+            --carousel-bg: transparent;
+            --button-text: white;
+            --border-color: #777;
+            --icon-color: white;
+            --detail: rgba(255, 255, 255, 0.374);
+            --hovering:black;
+            --underline: rgba(0, 217, 255, 1);
+        }
+
+        body.dark header {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background-color: var(--header-bg);
+            font-size: medium;
+            color: var(--header-text);
+            position: fixed;
+            box-shadow: 0 8px 16px rgba(255, 255, 255, 0.475);
+            top: 5px;
+            border-radius: 10px;
+            width: 98%;
+            left: 1%;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            top: 0;
+            width: 100%;
+            left: 0;
+            border-radius: 0;
+            background-color: rgba(0, 0, 0, 0.304);
+        }
+
+        /* Logo */
+        .Brand {
+            color: rgb(0, 217, 255);
+            font-size: 2.2rem;
+            cursor: default;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        /* Navigation Bar */
+        .navigation {
+            display: flex;
+            gap: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .navigation-bar {
+            cursor: pointer;
+            position: relative;
+            padding: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        .navigation-bar::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--underline);
+            transition: width 0.3s ease;
+        }
+
+        .Brand:hover,
+        .navigation-bar:hover {
+            transform: translateY(-2px);
+        }
+
+        .Brand:hover {
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.504);
+        }
+
+        .navigation-bar:hover::after {
+            width: 100%;
+        }
+
+        /* Introduction */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 5%;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 6rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            animation: fadeInUp 1s ease 0.2s forwards;
+            opacity: 0;
+        }
+
+        .heading-group h1 {
+            font-size: 6rem;
+            margin-bottom: 0;
+            line-height: 1;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .motto {
+            font-size: 1.5rem;
+            letter-spacing: 5px;
+            margin-top: -10px;
+        }
+
+        .tagline-container {
+            margin: 2rem 0;
+            min-height: 60px;
+        }
+
+        .tagline {
+            font-size: 1.8rem;
+            display: inline;
+        }
+
+        .rotating-words {
+            display: inline-block;
+            position: relative;
+            height: 60px;
+            overflow: hidden;
+        }
+
+        .rotating-words span {
+            display: block;
+            height: 100%;
+            padding-left: 10px;
+            color: rgb(0, 217, 255);
+            animation: rotateWords 12s infinite;
+            position: absolute;
+            opacity: 0;
+            width: max-content;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 2rem 0;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat .number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: rgb(0, 217, 255);
+        }
+
+        .stat .label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 2.5rem;
+            justify-content: center;
+            margin-top: 2rem;
+            margin-bottom: 3.5rem;
+        }
+
+        .cta-button {
+            margin-top: 3rem;
+            padding: 15px 30px;
+            background: var(--button-bg);
+            color: var(--button-text);
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease 0.4s forwards;
+            opacity: 0;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cta-button i {
+            transition: transform 0.3s ease;
+        }
+
+        .cta-button.primary {
+            background: rgba(0, 217, 255, 0.8);
+            color: white;
+            border: none;
+        }
+
+        .cta-button.primary:hover {
+            background: var(--button-hover);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button.primary:hover i {
+            transform: translateX(5px);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .cta-button.secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--footer-bg);
+            color: white;
+            padding: 40px 0 0;
+            margin-top: 50px;
+            backdrop-filter: blur(10px);
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .footer-brand {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-brand .Brand {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: rgb(0, 217, 255);
+            text-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
+        }
+
+        .footer-brand p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            color: var(--icon-color);
+            background: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background: rgba(0, 217, 255, 0.8);
+            transform: translateY(-3px);
+        }
+
+        .footer-links {
+            flex: 2;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .footer-column {
+            min-width: 150px;
+        }
+
+        .footer-column h3 {
+            display: inline-block;
+            position: relative;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 2px;
+            background: rgb(0, 217, 255);
+        }
+
+        .footer-column h3:hover {
+            cursor: default;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: rgb(0, 217, 255);
+            padding-left: 5px;
+        }
+
+        .footer-column ul li i {
+            margin-right: 10px;
+            color: rgb(0, 217, 255);
+            width: 20px;
+            text-align: center;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+            border-top: 1px solid var(--border-color);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* Setting Button */
+        .gear {
+            color: var(--icon-color);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gear:hover {
+            transform: scale(1.1) rotate(90deg);
+        }
+
+        .settings-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .settings-dropdown {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background-color: rgba(48, 47, 47, 0.293);
+            min-width: 180px;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(255, 255, 255, 0.475);
+            z-index: 1001;
+            backdrop-filter: blur(10px);
+            padding: 10px 0;
+            margin-top: 21px;
+        }
+
+        .settings-dropdown a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s;
+        }
+
+        .settings-dropdown a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .settings-container:hover .settings-dropdown {
+            display: block;
+        }
+
+        .settings-dropdown.active {
+            display: block;
+        }
+
+        .theme-option i {
+            width: 20px;
+            margin-right: 10px;
+            text-align: center;
+        }
+
+        .theme-option.active {
+            background: rgba(0, 217, 255, 0.2);
+            border-left: 3px solid rgb(0, 217, 255);
+        }
+
+        .theme-option.active i {
+            color: rgb(0, 217, 255);
+        }
+
+        @media (max-width: 768px) {
+            .navigation {
+                gap: 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            header {
+                flex-direction: column;
+                padding: 10px;
+                gap: 10px;
+            }
+
+            .navigation {
+                gap: 1rem;
+                font-size: 1rem;
+            }
+
+            .hero {
+                padding-top: 40px;
+            }
+        }
+
+        @keyframes gradient-shift {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes rotateWords {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            5% {
+                opacity: 1;
+                transform: translateY(0px);
+            }
+
+            20% {
+                opacity: 1;
+                transform: translateY(0px);
+            }
+
+            25% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header id="mainHeader">
+        <div class="Brand">
+            CYCLEIC
+        </div>
+        <div class="navigation">
+            <div class="navigation-bar">
+                <a href="Hero1.html" style="text-decoration: none; color:white; ">Home</a>
+            </div>
+            <div class="navigation-bar">
+                <a href="Login.html" style="text-decoration: none; color:white; ">Login/Sign-Up</a>
+            </div>
+            <div class="settings-container">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" viewBox="0 0 16 16"
+                    class="gear" id="settingsGear">
+                    <path
+                        d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0" />
+                    <path
+                        d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115z" />
+                </svg>
+                <div class="settings-dropdown" id="settingsDropdown">
+                    <a href="#" class="theme-option active" data-theme="default">
+                        <i class="fas fa-sun"></i> Light Mode
+                    </a>
+                    <a href="#" class="theme-option" data-theme="dark">
+                        <i class="fas fa-moon"></i> Dark Mode
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="heading-group">
+                <h1>CYCLEIC</h1>
+                <p class="motto">Ride Beyond Limits</p>
+            </div>
+
+            <div class="tagline-container">
+                <p class="tagline">Precision-engineered bicycles crafted for</p>
+                <div class="rotating-words">
+                    <span class="word">Speed</span>
+                    <span class="word">Adventure</span>
+                    <span class="word">Performance</span>
+                    <span class="word">You</span>
+                </div>
+            </div>
+
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="number" data-count="5000">0</div>
+                    <div class="label">Bikes Sold</div>
+                </div>
+                <div class="stat">
+                    <div class="number" data-count="47">0</div>
+                    <div class="label">Awards Won</div>
+                </div>
+                <div class="stat">
+                    <div class="number" data-count="12">0</div>
+                    <div class="label">Years Experience</div>
+                </div>
+            </div>
+
+            <div class="hero-cta">
+                <button class="cta-button primary" onclick="window.location.href='Login.html'">
+                    Explore Collection <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="Brand">CYCLEIC</div>
+                <p style="cursor: default">Ride the future with our premium collection of high-performance cycles
+                    designed for every terrain and every rider.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#" onclick="scrollToSection('home')">Home</a></li>
+                        <li><a href="Explore.html">Catalog</a></li>
+                        <li><a href="Contact.html">Contact Us</a></li>
+                        <li><a href="Login.html">Login/Sign-Up</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">Return Policy</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li style="cursor: default"><i class="fas fa-map-marker-alt"></i> XYZ, Delhi</li>
+                        <li style="cursor: default"><i class="fas fa-phone"></i> +1 234 567 890</li>
+                        <li style="cursor: default"><i class="fas fa-envelope"></i> info@cycleic.com</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Cycleic. All Rights Reserved. Designed by Rohan Jaiswal</p>
+        </div>
+    </footer>
+
+    <script>
+        const header = document.getElementById('mainHeader');
+        const settingsGear = document.getElementById('settingsGear');
+        const settingsDropdown = document.getElementById('settingsDropdown');
+        const themeOptions = document.querySelectorAll('.theme-option');
+        const counters = document.querySelectorAll('.number');
+        const heroSection = document.querySelector('.hero');
+
+        window.addEventListener('scroll', function () {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        function handleThemeChange(e) {
+            e.preventDefault();
+
+            themeOptions.forEach(opt => opt.classList.remove('active'));
+            this.classList.add('active');
+
+            const theme = this.dataset.theme;
+            document.body.className = theme;
+
+            document.querySelectorAll('header, footer').forEach(el => {
+                el.style.display = 'none';
+                el.offsetHeight;
+                el.style.display = '';
+            });
+
+            localStorage.setItem('cyclic-theme', theme);
+        }
+
+        function applySavedTheme() {
+            const savedTheme = localStorage.getItem('cyclic-theme') || 'default';
+            document.body.className = savedTheme;
+
+            const activeOption = document.querySelector(`.theme-option[data-theme="${savedTheme}"]`);
+            if (activeOption) {
+                activeOption.classList.add('active');
+            }
+
+            document.documentElement.style.setProperty('--primary-color',
+                getComputedStyle(document.body).getPropertyValue('--primary-color'));
+        }
+
+        settingsGear.addEventListener('click', function (e) {
+            e.stopPropagation();
+            settingsDropdown.classList.toggle('active');
+        });
+
+        document.addEventListener('click', () => settingsDropdown.classList.remove('active'));
+        settingsDropdown.addEventListener('click', e => e.stopPropagation());
+
+        function animateStats() {
+            const speed = 200;
+
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-count');
+                const count = +counter.innerText;
+                const increment = target / speed;
+
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + increment);
+                    setTimeout(animateStats, 1);
+                } else {
+                    counter.innerText = target;
+                }
+            });
+        }
+
+        const heroObserver = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                animateStats();
+                heroObserver.unobserve(entries[0].target);
+            }
+        }, { threshold: 0.5 });
+
+        function initializePage() {
+            applySavedTheme();
+            heroObserver.observe(heroSection);
+
+            themeOptions.forEach(option => {
+                option.addEventListener('click', handleThemeChange);
+            });
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializePage);
+        } else {
+            initializePage();
+        }
+    </script>
+</body>
+</html>
